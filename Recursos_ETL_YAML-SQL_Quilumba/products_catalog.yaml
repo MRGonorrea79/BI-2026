@@ -1,0 +1,88 @@
+---
+product_id: PRD-001
+name: Laptop Pro 15
+category: ELECTRONICS
+brand: TechCorp
+unit_price: "1250.00"
+currency: USD
+stock_quantity: 45
+supplier_code: SUP_A01
+last_updated: "2026-03-15"
+active: YES
+---
+product_id: PRD-002
+name: Wireless Mouse
+category: electronics
+brand: ClickMaster
+unit_price: "29.99"
+currency: USD
+stock_quantity: 320
+supplier_code: SUP_A01
+last_updated: "2026-03-20"
+active: yes
+---
+product_id: PRD-003
+name: Office Desk Chair
+category: Furniture
+brand: ErgoLife
+unit_price: "349.50"
+currency: Usd
+stock_quantity: 18
+supplier_code: SUP_B02
+last_updated: "2026-02-28"
+active: YES
+---
+product_id: PRD-004
+name: USB-C Hub 7-Port
+category: Electronics
+brand: ConnectAll
+unit_price: "49.00"
+currency: USD
+stock_quantity: 210
+supplier_code: SUP_A01
+last_updated: "2026-04-01"
+active: Yes
+---
+product_id: PRD-005
+name: Standing Desk
+category: FURNITURE
+brand: ErgoLife
+unit_price: "799.99"
+currency: usd
+stock_quantity: 7
+supplier_code: SUP_B02
+last_updated: "2026-01-10"
+active: NO
+---
+product_id: PRD-006
+name: 4K Monitor
+category: electronics
+brand: VisionMax
+unit_price: "580.00"
+currency: USD
+stock_quantity: 33
+supplier_code: SUP_C03
+last_updated: "2026-04-10"
+active: YES
+---
+product_id: PRD-007
+name: Mechanical Keyboard
+category: Electronics
+brand: TypePro
+unit_price: "135.00"
+currency: usd
+stock_quantity: 0
+supplier_code: SUP_A01
+last_updated: "2026-03-05"
+active: no
+---
+product_id: PRD-008
+name: Bookshelf 5-Tier
+category: furniture
+brand: WoodCraft
+unit_price: "219.00"
+currency: USD
+stock_quantity: 52
+supplier_code: SUP_B02
+last_updated: "2026-02-14"
+active: YES

@@ -1,29 +1,26 @@
-# ESCUELA POLITÉCNICA NACIONAL  
-# Facultad de Ingeniería de Sistemas  
-# Ingeniería de Software  
-# Business Intelligence  
+# ESCUELA POLITÉCNICA NACIONAL
+# Facultad de Ingeniería de Sistemas
+# Ingeniería de Software
+# Business Intelligence
 
+## Laboratorio #1
+### Instalación y uso de Pentaho Data Integration (PDI)
 
-## Laboratorio #1  
-### Instalación y uso de Pentaho Data Integration (PDI)  
+**Integrantes:**
+* Javier Angulo
+* Jotcelyn Godoy
+* Michael Tipan
+* Javier Quilumba
+* Cristian Robles
 
+**Docente:**
+Diana
 
+**Curso:**
+Business Intelligence / GR2SW
 
-**Integrantes:**  
-Javier Angulo  
-Jotcelyn Godoy  
-Michael Tipan  
-Javier Quilumba  
-Cristian Robles
-
-**Docente:**  
-Diana  
-
-**Curso:**  
-Business Intelligence / GR2SW  
-
-**Fecha:**  
-21 de abril de 2026  
+**Fecha:**
+21 de abril de 2026
 
 ---
 
@@ -32,192 +29,91 @@ Business Intelligence / GR2SW
 ---
 
 ## DESARROLLO
-# Caso 1 - Proceso ETL en Pentaho (JSON Input → Transformación → JSON Output)
 
-## 1. Fase de Extracción (E)
-Para iniciar el proceso, se preparó la fuente de datos y la conexión inicial en Pentaho Data Integration:
+# Caso 1 - Proceso ETL (JSON Input → Number Range → JSON Output)
+**Responsable:** Cristian Robles
 
-- **Preparación del origen**:  
-  Se creó un archivo `.json` en el directorio local con una estructura jerárquica que incluye objetos anidados (`usuario`, `encuesta`) y campos de valor simple.
+### 1. Fase de Extracción (E)
+Para iniciar el proceso, se preparó la fuente de datos y la conexión inicial en PDI:
+- **Preparación del origen:** Se creó un archivo `.json` local con una estructura jerárquica de usuarios y encuestas.
+- **Configuración del Input:** Se utilizó el step **JSON Input** (renombrado como *Staging*). Se mapearon los campos mediante **JsonPath** para transformar la estructura anidada en una tabla lógica de Pentaho.
 
-- **Configuración del Input**:  
-  - Se utilizó el step **JSON Input**, renombrado como *Staging*.  
-  - Se vinculó la ruta del archivo local en la pestaña **File**.  
-  - En la pestaña **Fields**, se definieron los objetos y campos mediante **JsonPath** para mapear la estructura del archivo a una tabla lógica de Pentaho.
-
----
-
-## 2. Fase de Transformación (T)
+### 2. Fase de Transformación (T)
 El objetivo fue enriquecer los datos originales mediante una calificación cualitativa basada en valores numéricos.
+- **Lógica de Negocio:** Se integró el step **Number Range** para clasificar el campo `puntuacion_satisfaccion`.
+- **Umbrales definidos:**
+  | Límite Inferior | Límite Superior | Valor Cualitativo |
+  |-----------------|-----------------|-------------------|
+  | 0.0             | 5.0             | Baja              |
+  | 5.0             | 8.0             | Media             |
+  | 8.0             | 10.0            | Alta              |
 
-- **Vínculo de datos**:  
-  Se creó un *hop* (conector) desde el paso *Staging* hacia el step **Number Range**.
+### 3. Fase de Carga (L)
+Finalmente, los datos transformados se exportaron para su consumo posterior.
+- **Configuración de Salida:** Se utilizó el step **JSON Output** conectado a la salida del step de transformación.
+- **Definición de Campos:** Se especificó el directorio de destino y se seleccionaron los campos originales junto con el nuevo campo calculado `rango`.
 
-- **Lógica de Negocio (Clasificación)**:  
-  - Campo de entrada: `puntuacion_satisfaccion`  
-  - Campo de salida: `rango`  
-  - Umbrales definidos:
-
-    | Límite Inferior | Límite Superior | Valor Cualitativo |
-    |-----------------|-----------------|-------------------|
-    | 0.0             | 5.0             | Baja              |
-    | 5.0             | 8.0             | Media             |
-    | 8.0             | 10.0            | Alta              |
-
----
-
-## 3. Fase de Carga (L)
-Finalmente, los datos transformados se exportaron a un nuevo formato para su consumo posterior.
-
-- **Configuración de Salida**:  
-  Se utilizó el step **JSON Output** conectado a la salida del **Number Range**.
-
-- **Definición de Campos**:  
-  - Se especificó el directorio de destino y el nombre del archivo de salida.  
-  - En la pestaña **Fields**, se seleccionaron los campos originales junto con el nuevo campo calculado `rango`.
+### 4. Ejecución y Validación
+- **Ejecución:** Se corrió la transformación mediante el botón **Run**.
+- **Verificación:** Se revisaron los logs de ejecución de Spoon para confirmar el éxito (`I=5, O=5`) y se validó físicamente que el archivo JSON de salida contuviera la nueva etiqueta cualitativa.
 
 ---
 
-## 4. Ejecución y Validación
-- **Ejecución**:  
-  Se corrió la transformación mediante el botón **Run**.
+# Caso 2 - Proceso ETL (Data Grid → String Operations → Text file Output)
+**Responsables:** Michael Tipan / Jotcelyn Godoy
 
-- **Verificación**:  
-  - Se revisaron los logs de ejecución de Spoon para confirmar que no hubo errores (`I=5, O=5`).  
-  - Se validó físicamente en el directorio que el archivo JSON de salida contuviera la nueva etiqueta cualitativa por cada registro procesado.
-
----
-# Caso 2 - Proceso ETL en Pentaho (Data Grid Input → Transformación → Text file Output)
-
-## 2. Input: Data Grid
-Para el experimento de entrada, se utilizó el componente Data Grid. Este paso permite generar una tabla de datos interna sin necesidad de archivos externos.
-
-* **Configuración:** Se definió una columna de tipo `String` denominada `Nombre`.
-  
+### 1. Fase de Extracción (E)
+- **Configuración:** Se utilizó el componente **Data Grid** para generar una tabla de datos interna. Se definió la columna `Nombre` de tipo String.
   ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image.png>)
+- **Datos ingresados:** Se registraron 5 filas con nombres propios (Cristian, Javier, Juan, Pedro y Pepito).
+  ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-1.png>)
 
-* **Datos ingresados:** Se registraron 5 filas con nombres propios (Cristian, Javier, Juan, Pedro y Pepito).
+### 2. Fase de Transformación (T)
+- **Operación:** Se aplicó el componente **String Operations** para la normalización de cadenas de texto.
+- **Configuración:** Se seleccionó el campo `Nombre`, aplicando la función **Upper** (Mayúsculas) y **Trim type: both** para eliminar espacios en blanco innecesarios.
+  ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-2.png>)
 
-    ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-1.png>)
+### 3. Fase de Carga (L)
+- **Función:** Exportar los datos ya transformados a un archivo físico.
+- **Resultado:** Se utilizó el componente **Text File Output** para generar el archivo final con los nombres estandarizados.
+  ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-3.png>)
 
-
-## 2. Transformation: String Operations
-Como transformación, se aplicó el componente **String Operations** para demostrar la capacidad de Pentaho en la normalización de cadenas de texto.
-
-* **Configuración:** Se seleccionó el campo `Nombre` y se aplicó la función **Upper** para poner todas las letras en Mayúsculas.
-* **Limpieza:** Se activó la opción **Trim type: both** para asegurar la eliminación de espacios en blanco innecesarios, garantizando la integridad de los datos.
-
-![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-2.png>)
----
-
-## 3. Output: Text File Output
-Para cerrar el ciclo del proceso ETL, se utilizó un componente de salida de archivos de texto plano.
-
-* **Función:** Exportar los datos ya transformados a un archivo físico.
-* **Resultado:** El archivo final contiene los nombres procesados y estandarizados, listos para ser consumidos por otros módulos de software o sistemas de reportería.
-
-![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-3.png>)
----
-
-## 4. Resultados de Ejecución
-Se procedió a correr la transformación localmente en Spoon. El sistema reportó una ejecución exitosa de extremo a extremo.
-
-* **Estado:** Finalización exitosa (Checks verdes en todos los componentes).
-* **Métricas:** Se procesaron correctamente las 5 filas de entrada, pasando por la transformación y llegando al archivo de salida sin pérdida de datos.
-
-![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-4.png>)
-
-![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-5.png>)
-
-![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-6.png>)
----
-
-# Caso 3 - CSV File Input → Calculator → JSON Output
-
-**Integrante:** Jonathan Tipan
-
-Se trabajó con un archivo de ventas en formato `.csv` para calcular el subtotal de cada producto y exportar el resultado en formato JSON.
+### 4. Ejecución y Validación
+- **Estado:** Finalización exitosa verificada mediante checks verdes en todos los componentes y procesamiento correcto de las 5 filas de entrada.
+  ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-4.png>)
+  ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-5.png>)
+  ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-6.png>)
 
 ---
 
-## Archivo de entrada `ventas.csv`
+# Caso 3 - Proceso ETL (CSV Input → Calculator → JSON Output)
+**Responsable:** Jonathan Tipan
 
-![Archivo ventas.csv](imagenes/image.png)
+### 1. Fase de Extracción (E)
+- **Origen:** Se trabajó con un archivo de ventas en formato `.csv` (`ventas.csv`).
+  ![Archivo ventas.csv](imagenes/image.png)
+- **Configuración:** Se configuró el step **CSV File Input** con delimitador `,` y la opción **Header row present** activada, detectando los campos automáticamente.
+  ![Configuración del CSV File Input](imagenes/image-1.png)
 
----
+### 2. Fase de Transformación (T)
+- **Lógica:** Se implementó el step **Calculator** para calcular el subtotal de cada producto.
+- **Operación:** Se definió el campo `subtotal` mediante la multiplicación: `precio_unitario * cantidad`.
+  ![Configuración del Calculator](imagenes/image-2.png)
 
-## Pasos
+### 3. Fase de Carga (L)
+- **Configuración:** Uso del step **JSON Output** configurado como `Write to file` y codificación **UTF-8**.
+- **Campos:** Se incluyeron mediante **Get Fields** las columnas originales y el nuevo cálculo de subtotal.
+  ![Pestaña General](imagenes/image-3.png)
+  ![Pestaña Fields](imagenes/image-4.png)
 
-### 1. CSV File Input
-
-Se arrastró el step **CSV File Input** (carpeta *Input*) al canvas y se configuró apuntando al archivo `ventas.csv`, con delimitador `,` y la opción **Header row present** activada.
-
-Luego se utilizó **Get Fields** para detectar automáticamente las columnas.
-
-![Configuración del CSV File Input con los campos detectados](imagenes/image-1.png)
-
----
-
-### 2. Calculator
-
-Se agregó el step **Calculator** (carpeta *Transform*) y se conectó al anterior con `Shift + arrastre`.
-
-Se definió un único campo calculado:
-
-| Nuevo campo | Operación | Campo A           | Campo B    |
-|-------------|-----------|-------------------|------------|
-| `subtotal`  | A * B     | `precio_unitario` | `cantidad` |
-
-De esta manera, el subtotal se obtiene multiplicando el precio unitario por la cantidad de productos.
-
-![Configuración del Calculator](imagenes/image-2.png)
+### 4. Ejecución y Validación
+- **Resultado:** El proceso finalizó correctamente generando el archivo `resultados_0.json`.
+  ![Ejecución exitosa](imagenes/image-6.png)
+  ![Contenido JSON generado](imagenes/image-5.png)
 
 ---
 
-### 3. JSON Output
-
-Se agregó el step **JSON Output** (carpeta *Output*) y se conectó al Calculator.
-
-**Pestaña General:**
-
-- Se seleccionó la operación `Write to file`
-- Se configuró el nombre del archivo de salida, por ejemplo: `${Internal.Entry.Current.Directory}/resultados`
-- Se dejó la extensión como `json`
-- Se configuró la codificación en **UTF-8**
-- En **Nr rows in a block** se colocó un valor mayor al número de registros (por ejemplo `8`) para que toda la salida se genere en un solo archivo JSON
-
-![Pestaña General del JSON Output](imagenes/image-3.png)
-
-**Pestaña Fields:**
-
-- Se utilizó **Get Fields** para incluir los campos:
-  - `producto`
-  - `precio_unitario`
-  - `cantidad`
-  - `subtotal`
-
-![Pestaña Fields del JSON Output](imagenes/image-4.png)
-
----
-
-### 4. Resultado
-
-Al ejecutar la transformación con `F9`, el proceso finalizó correctamente y se generó el archivo `resultados_0.json` con la información calculada.
-
-La siguiente imagen muestra la ejecución exitosa de la transformación y el flujo completo con los tres steps conectados: **CSV File Input**, **Calculator** y **JSON Output**.
-
-![Ejecución exitosa y flujo de la transformación](imagenes/image-6.png)
-
-A continuación, se presenta el contenido generado en el archivo JSON de salida:
-
-![Contenido del archivo JSON generado](imagenes/image-5.png)
-
----
-
-# Caso 4 - Proceso ETL en Pentaho (YAML Input → Transformación JS → Table Output HSQLDB)
-
-**Integrante:** Javier Quilumba
-
+# Caso 4 - Proceso ETL (YAML Input → JS Value → Table Output)
 <div style="background-color: #f4f6f8; border-left: 4px solid #1a73e8; padding: 15px; border-radius: 4px; font-family: sans-serif;">
   <b style="color: #1a73e8;">Contexto y Propuesta:</b><br/>
   Implementación de un flujo de Extracción, Transformación y Carga (ETL) orientado a procesar remesas de catálogos nativos de integraciones API (YAML), aplicar reglas de negocio sobre métricas comerciales mediante algoritmos, y consolidar los registros resultantes en una tabla de Staging dentro de un motor relacional embebido.
@@ -400,4 +296,3 @@ El veredicto final es evaluable mediante el visor directo de matriz. En base a l
 ---
 
 ## CONCLUSIÓN
-

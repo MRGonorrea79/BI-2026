@@ -1,14 +1,13 @@
 # ESCUELA POLITÉCNICA NACIONAL  
-## Facultad de Ingeniería de Sistemas  
-### Ingeniería de Software  
-#### Business Intelligence  
+# Facultad de Ingeniería de Sistemas  
+# Ingeniería de Software  
+# Business Intelligence  
 
----
 
 ## Laboratorio #1  
 ### Instalación y uso de Pentaho Data Integration (PDI)  
 
----
+
 
 **Integrantes:**  
 Javier Angulo  

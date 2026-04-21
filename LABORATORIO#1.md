@@ -94,11 +94,11 @@ Para el experimento de entrada, se utilizó el componente Data Grid. Este paso p
 
 * **Configuración:** Se definió una columna de tipo `String` denominada `Nombre`.
   
-  ![alt text](image-1.png)
+  ![alt text](image.png)
 
 * **Datos ingresados:** Se registraron 5 filas con nombres propios (Cristian, Javier, Juan, Pedro y Pepito).
 
-    ![alt text](image-2.png)
+    ![alt text](image-1.png)
 
 
 ## 2. Transformation: String Operations
@@ -107,7 +107,7 @@ Como transformación, se aplicó el componente **String Operations** para demost
 * **Configuración:** Se seleccionó el campo `Nombre` y se aplicó la función **Upper** para poner todas las letras en Mayúsculas.
 * **Limpieza:** Se activó la opción **Trim type: both** para asegurar la eliminación de espacios en blanco innecesarios, garantizando la integridad de los datos.
 
-![alt text](image-4.png)
+![alt text](image-2.png)
 ---
 
 ## 3. Output: Text File Output
@@ -116,8 +116,7 @@ Para cerrar el ciclo del proceso ETL, se utilizó un componente de salida de arc
 * **Función:** Exportar los datos ya transformados a un archivo físico.
 * **Resultado:** El archivo final contiene los nombres procesados y estandarizados, listos para ser consumidos por otros módulos de software o sistemas de reportería.
 
-![alt text](image-5.png)
-
+![alt text](image-3.png)
 ---
 
 ## 4. Resultados de Ejecución
@@ -126,11 +125,11 @@ Se procedió a correr la transformación localmente en Spoon. El sistema report�
 * **Estado:** Finalización exitosa (Checks verdes en todos los componentes).
 * **Métricas:** Se procesaron correctamente las 5 filas de entrada, pasando por la transformación y llegando al archivo de salida sin pérdida de datos.
 
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
 ![alt text](image-6.png)
-
-![alt text](image-7.png)
-
-![alt text](image-9.png)
 ---
 
 ## CONCLUSIÓN

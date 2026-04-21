@@ -113,7 +113,45 @@ Finalmente, los datos transformados se exportaron para su consumo posterior.
 
 ---
 
-# Caso 4 - Proceso ETL (YAML Input → JS Value → Table Output)
+# Caso 2 - Proceso ETL en Pentaho (XML → Transformación → CSV)
+
+## 1. Extracción (E)
+
+Se utilizó un archivo XML obtenido del dataset de W3Schools XML Simple Dataset ([https://www.w3schools.com/xml/simple.xml](https://www.w3schools.com/xml/simple.xml)), el cual contiene nodos `<food>` con datos como nombre, precio, descripción y calorías.
+
+* Step usado: **Get Data from XML** (*Staging*)
+* Loop XPath: `/breakfast_menu/food`
+* Campos extraídos: `name`, `price`, `description`, `calories`
+
+---
+
+## 2. Transformación (T)
+
+Se aplicaron operaciones básicas de limpieza y estructuración:
+
+* **String Operations (Trim)**: eliminación de espacios en campos de texto
+* **Row Denormaliser**: adaptación de la estructura jerárquica a formato tabular
+
+---
+
+## 3. Carga (L)
+
+Los datos se exportaron a formato plano:
+
+* Step: **Text File Output (CSV)**
+* Separador: coma (`,`)
+* Campos: `name`, `price`, `description`, `calories`
+
+---
+
+## 4. Validación
+
+* Ejecución sin errores en Spoon
+* Archivo CSV generado correctamente, con datos limpios y organizados en filas
+
+---
+
+# Caso 5 - Proceso ETL (YAML Input → JS Value → Table Output)
 <div style="background-color: #f4f6f8; border-left: 4px solid #1a73e8; padding: 15px; border-radius: 4px; font-family: sans-serif;">
   <b style="color: #1a73e8;">Contexto y Propuesta:</b><br/>
   Implementación de un flujo de Extracción, Transformación y Carga (ETL) orientado a procesar remesas de catálogos nativos de integraciones API (YAML), aplicar reglas de negocio sobre métricas comerciales mediante algoritmos, y consolidar los registros resultantes en una tabla de Staging dentro de un motor relacional embebido.

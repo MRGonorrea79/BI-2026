@@ -123,7 +123,7 @@ Se utilizó un archivo XML obtenido del dataset de W3Schools XML Simple Dataset 
 * Loop XPath: `/breakfast_menu/food`
 * Campos extraídos: `name`, `price`, `description`, `calories`
 
----
+
 
 ## 2. Transformación (T)
 
@@ -132,7 +132,7 @@ Se aplicaron operaciones básicas de limpieza y estructuración:
 * **String Operations (Trim)**: eliminación de espacios en campos de texto
 * **Row Denormaliser**: adaptación de la estructura jerárquica a formato tabular
 
----
+
 
 ## 3. Carga (L)
 
@@ -142,14 +142,14 @@ Los datos se exportaron a formato plano:
 * Separador: coma (`,`)
 * Campos: `name`, `price`, `description`, `calories`
 
----
+
 
 ## 4. Validación
 
 * Ejecución sin errores en Spoon
 * Archivo CSV generado correctamente, con datos limpios y organizados en filas
 
----
+
 
 # Caso 5 - Proceso ETL (YAML Input → JS Value → Table Output)
 <div style="background-color: #f4f6f8; border-left: 4px solid #1a73e8; padding: 15px; border-radius: 4px; font-family: sans-serif;">

@@ -14,6 +14,7 @@ Javier Angulo
 Jotcelyn Godoy  
 Michael Tipan  
 Javier Quilumba  
+Cristian Robles
 
 **Docente:**  
 Diana  
@@ -85,6 +86,51 @@ Finalmente, los datos transformados se exportaron a un nuevo formato para su con
   - Se revisaron los logs de ejecución de Spoon para confirmar que no hubo errores (`I=5, O=5`).  
   - Se validó físicamente en el directorio que el archivo JSON de salida contuviera la nueva etiqueta cualitativa por cada registro procesado.
 
+---
+# Proceso ETL en Pentaho (Data Grid Input → Transformación → Text file Output)
+
+## 2. Input: Data Grid
+Para el experimento de entrada, se utilizó el componente Data Grid. Este paso permite generar una tabla de datos interna sin necesidad de archivos externos.
+
+* **Configuración:** Se definió una columna de tipo `String` denominada `Nombre`.
+  
+  ![alt text](image-1.png)
+
+* **Datos ingresados:** Se registraron 5 filas con nombres propios (Cristian, Javier, Juan, Pedro y Pepito).
+
+    ![alt text](image-2.png)
+
+
+## 2. Transformation: String Operations
+Como transformación, se aplicó el componente **String Operations** para demostrar la capacidad de Pentaho en la normalización de cadenas de texto.
+
+* **Configuración:** Se seleccionó el campo `Nombre` y se aplicó la función **Upper** para poner todas las letras en Mayúsculas.
+* **Limpieza:** Se activó la opción **Trim type: both** para asegurar la eliminación de espacios en blanco innecesarios, garantizando la integridad de los datos.
+
+![alt text](image-4.png)
+---
+
+## 3. Output: Text File Output
+Para cerrar el ciclo del proceso ETL, se utilizó un componente de salida de archivos de texto plano.
+
+* **Función:** Exportar los datos ya transformados a un archivo físico.
+* **Resultado:** El archivo final contiene los nombres procesados y estandarizados, listos para ser consumidos por otros módulos de software o sistemas de reportería.
+
+![alt text](image-5.png)
+
+---
+
+## 4. Resultados de Ejecución
+Se procedió a correr la transformación localmente en Spoon. El sistema reportó una ejecución exitosa de extremo a extremo.
+
+* **Estado:** Finalización exitosa (Checks verdes en todos los componentes).
+* **Métricas:** Se procesaron correctamente las 5 filas de entrada, pasando por la transformación y llegando al archivo de salida sin pérdida de datos.
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+![alt text](image-9.png)
 ---
 
 ## CONCLUSIÓN

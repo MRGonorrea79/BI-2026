@@ -113,7 +113,7 @@ Finalmente, los datos transformados se exportaron para su consumo posterior.
 
 ---
 
-# Caso 2 - Proceso ETL en Pentaho (XML → Transformación → CSV)
+# Caso 2 - Proceso ETL en Pentaho (XML → Row denormaliser → CSV)
 
 ## 1. Extracción (E)
 

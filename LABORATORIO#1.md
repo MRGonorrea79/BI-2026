@@ -132,7 +132,7 @@ Se procedió a correr la transformación localmente en Spoon. El sistema report�
 ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-6.png>)
 ---
 
-# Caso 3 â€” CSV File Input → Calculator → JSON Output
+# Caso 3 - CSV File Input → Calculator → JSON Output
 
 **Integrante:** Jonathan Tipan
 

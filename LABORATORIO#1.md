@@ -87,7 +87,7 @@ Finalmente, los datos transformados se exportaron a un nuevo formato para su con
   - Se validó físicamente en el directorio que el archivo JSON de salida contuviera la nueva etiqueta cualitativa por cada registro procesado.
 
 ---
-# Proceso ETL en Pentaho (Data Grid Input → Transformación → Text file Output)
+# Proceso ETL en Pentaho (Data Grid Input → String Operations → Text file Output)
 
 ## 2. Input: Data Grid
 Para el experimento de entrada, se utilizó el componente Data Grid. Este paso permite generar una tabla de datos interna sin necesidad de archivos externos.

@@ -32,7 +32,7 @@ Business Intelligence / GR2SW
 ---
 
 ## DESARROLLO
-# Proceso ETL en Pentaho (JSON Input → Transformación → JSON Output)
+# Caso 1 - Proceso ETL en Pentaho (JSON Input → Transformación → JSON Output)
 
 ## 1. Fase de Extracción (E)
 Para iniciar el proceso, se preparó la fuente de datos y la conexión inicial en Pentaho Data Integration:
@@ -87,7 +87,7 @@ Finalmente, los datos transformados se exportaron a un nuevo formato para su con
   - Se validó físicamente en el directorio que el archivo JSON de salida contuviera la nueva etiqueta cualitativa por cada registro procesado.
 
 ---
-# Proceso ETL en Pentaho (Data Grid Input → Transformación → Text file Output)
+# Caso 2 - Proceso ETL en Pentaho (Data Grid Input → Transformación → Text file Output)
 
 ## 2. Input: Data Grid
 Para el experimento de entrada, se utilizó el componente Data Grid. Este paso permite generar una tabla de datos interna sin necesidad de archivos externos.
@@ -130,6 +130,88 @@ Se procedió a correr la transformación localmente en Spoon. El sistema report�
 ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-5.png>)
 
 ![alt text](<Capturas_Proceso ETL en Pentaho (Data Grid Input - Transformación - Text file Output)/image-6.png>)
+---
+
+# Caso 3 — CSV File Input → Calculator → JSON Output
+
+**Integrante:** Jonathan Tipan
+
+Se trabajó con un archivo de ventas en formato `.csv` para calcular el subtotal de cada producto y exportar el resultado en formato JSON.
+
+---
+
+## Archivo de entrada `ventas.csv`
+
+![Archivo ventas.csv](imagenes/image.png)
+
+---
+
+## Pasos
+
+### 1. CSV File Input
+
+Se arrastró el step **CSV File Input** (carpeta *Input*) al canvas y se configuró apuntando al archivo `ventas.csv`, con delimitador `,` y la opción **Header row present** activada.
+
+Luego se utilizó **Get Fields** para detectar automáticamente las columnas.
+
+![Configuración del CSV File Input con los campos detectados](imagenes/image-1.png)
+
+---
+
+### 2. Calculator
+
+Se agregó el step **Calculator** (carpeta *Transform*) y se conectó al anterior con `Shift + arrastre`.
+
+Se definió un único campo calculado:
+
+| Nuevo campo | Operación | Campo A           | Campo B    |
+|-------------|-----------|-------------------|------------|
+| `subtotal`  | A * B     | `precio_unitario` | `cantidad` |
+
+De esta manera, el subtotal se obtiene multiplicando el precio unitario por la cantidad de productos.
+
+![Configuración del Calculator](imagenes/image-2.png)
+
+---
+
+### 3. JSON Output
+
+Se agregó el step **JSON Output** (carpeta *Output*) y se conectó al Calculator.
+
+**Pestaña General:**
+
+- Se seleccionó la operación `Write to file`
+- Se configuró el nombre del archivo de salida, por ejemplo: `${Internal.Entry.Current.Directory}/resultados`
+- Se dejó la extensión como `json`
+- Se configuró la codificación en **UTF-8**
+- En **Nr rows in a block** se colocó un valor mayor al número de registros (por ejemplo `8`) para que toda la salida se genere en un solo archivo JSON
+
+![Pestaña General del JSON Output](imagenes/image-3.png)
+
+**Pestaña Fields:**
+
+- Se utilizó **Get Fields** para incluir los campos:
+  - `producto`
+  - `precio_unitario`
+  - `cantidad`
+  - `subtotal`
+
+![Pestaña Fields del JSON Output](imagenes/image-4.png)
+
+---
+
+### 4. Resultado
+
+Al ejecutar la transformación con `F9`, el proceso finalizó correctamente y se generó el archivo `resultados_0.json` con la información calculada.
+
+La siguiente imagen muestra la ejecución exitosa de la transformación y el flujo completo con los tres steps conectados: **CSV File Input**, **Calculator** y **JSON Output**.
+
+![Ejecución exitosa y flujo de la transformación](imagenes/image-6.png)
+
+A continuación, se presenta el contenido generado en el archivo JSON de salida:
+
+![Contenido del archivo JSON generado](imagenes/image-5.png)
+
 ---
 
 ## CONCLUSIÓN

@@ -113,7 +113,7 @@ Finalmente, los datos transformados se exportaron para su consumo posterior.
 
 ---
 
-# Caso 4 - Proceso ETL en Pentaho (XML → Row denormaliser → CSV)
+# Caso 4 - Proceso ETL en Pentaho (XML → Row normaliser → CSV)
 
 ## 1. Extracción (E)
 
@@ -138,7 +138,7 @@ Se aplicaron operaciones básicas de limpieza y estructuración:
 <img width="1300" height="201" alt="image" src="https://github.com/user-attachments/assets/675c7333-bd23-4c5d-9cc9-6a2aadc79d1b" />
 
 
-* **Row Denormaliser**: adaptación de la estructura jerárquica a formato tabular. Este paso permitió reorganizar los datos provenientes del XML en una estructura tabular más adecuada para exportación, agrupando valores relacionados en una sola fila cuando era necesario,ya que la jerarquia comun de XML no permite su transformacion a archivos planos como CSV.
+* **Row normaliser**: adaptación de la estructura jerárquica a formato tabular. Este paso permitió reorganizar los datos provenientes del XML en una estructura tabular más adecuada para exportación, agrupando valores relacionados en una sola fila cuando era necesario,ya que la jerarquia comun de XML no permite su transformacion a archivos planos como CSV.
 
 <img width="1162" height="257" alt="image" src="https://github.com/user-attachments/assets/3831a79b-06c3-42df-bf6c-407b9aec7653" />
   

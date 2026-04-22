@@ -114,6 +114,7 @@ Finalmente, los datos transformados se exportaron para su consumo posterior.
 ---
 
 # Caso 4 - Proceso ETL en Pentaho (XML → Row normaliser → CSV)
+**Responsable**: Javier Angulo
 
 ## 1. Extracción (E)
 

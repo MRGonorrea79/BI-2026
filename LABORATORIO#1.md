@@ -113,7 +113,7 @@ Finalmente, los datos transformados se exportaron para su consumo posterior.
 
 ---
 
-# Caso 2 - Proceso ETL en Pentaho (XML → Row denormaliser → CSV)
+# Caso 4 - Proceso ETL en Pentaho (XML → Row denormaliser → CSV)
 
 ## 1. Extracción (E)
 
@@ -123,16 +123,25 @@ Se utilizó un archivo XML obtenido del dataset de W3Schools XML Simple Dataset 
 * Loop XPath: `/breakfast_menu/food`
 * Campos extraídos: `name`, `price`, `description`, `calories`
 
+<img width="1195" height="845" alt="image" src="https://github.com/user-attachments/assets/79f48b23-e4ae-4e4f-9699-feb5c9f07581" />
+
+<img width="1196" height="178" alt="image" src="https://github.com/user-attachments/assets/31c0d44c-5486-4837-8276-0c2bca140314" />
+
 
 
 ## 2. Transformación (T)
 
 Se aplicaron operaciones básicas de limpieza y estructuración:
 
-* **String Operations (Trim)**: eliminación de espacios en campos de texto
-* **Row Denormaliser**: adaptación de la estructura jerárquica a formato tabular
+* **String Operations (Trim)**: eliminación de espacios en campos de texto. Se aplicó la operación Trim (both) a los campos de tipo texto (name, description, price) para eliminar espacios en blanco al inicio y final de cada valor.
+
+<img width="1300" height="201" alt="image" src="https://github.com/user-attachments/assets/675c7333-bd23-4c5d-9cc9-6a2aadc79d1b" />
 
 
+* **Row Denormaliser**: adaptación de la estructura jerárquica a formato tabular. Este paso permitió reorganizar los datos provenientes del XML en una estructura tabular más adecuada para exportación, agrupando valores relacionados en una sola fila cuando era necesario,ya que la jerarquia comun de XML no permite su transformacion a archivos planos como CSV.
+
+<img width="1162" height="257" alt="image" src="https://github.com/user-attachments/assets/3831a79b-06c3-42df-bf6c-407b9aec7653" />
+  
 
 ## 3. Carga (L)
 
@@ -142,13 +151,18 @@ Los datos se exportaron a formato plano:
 * Separador: coma (`,`)
 * Campos: `name`, `price`, `description`, `calories`
 
+<img width="1083" height="560" alt="image" src="https://github.com/user-attachments/assets/3fd9ce7c-42d7-44d6-84c5-ed6109c5222c" />
+
+<img width="1084" height="561" alt="image" src="https://github.com/user-attachments/assets/a10138e1-2f56-4584-8f15-562239a0833a" />
 
 
 ## 4. Validación
 
-* Ejecución sin errores en Spoon
-* Archivo CSV generado correctamente, con datos limpios y organizados en filas
+- Se validó que el archivo CSV generado contuviera los datos correctamente limpiados,no contuviera espacios en blanco y que estos estuvieran estructurados en formato tabular.
 
+- Se comprobó que cada registro del XML original correspondiera a una fila en el archivo CSV final.
+
+<img width="1223" height="565" alt="image" src="https://github.com/user-attachments/assets/4eb22855-907f-4033-8c47-48cf4f5924ef" />
 
 
 # Caso 5 - Proceso ETL (YAML Input → JS Value → Table Output)

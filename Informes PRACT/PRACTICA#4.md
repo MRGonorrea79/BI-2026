@@ -55,3 +55,73 @@ Normalización de los datos del archivo `Tabla_Desnormalizada_Ventas.csv` en un 
 A continuación, se presentan las consultas SQL solicitadas para el análisis de los datos:
 
 ### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
+```sql
+SELECT 
+    p.category, 
+    EXTRACT(MONTH FROM f.full_date) AS mes, 
+    COUNT(*) AS total_ventas
+FROM fact_ventas v
+JOIN dim_producto p ON v.product_key = p.product_key
+JOIN dim_fecha f ON v.order_date_key = f.date_key
+GROUP BY p.category, mes
+ORDER BY mes;
+```
+
+![Pregunta 1](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
+```sql
+SELECT 
+    c.customer_key, 
+    c.gender, 
+    SUM(v.sales_amount) AS ingreso_total
+FROM fact_ventas v
+JOIN dim_cliente c ON v.customer_key = c.customer_key
+GROUP BY c.customer_key, c.gender;
+```
+
+
+![alt text](image-3.png)
+
+### 3. ¿Cuál es la cantidad total vendida por producto?
+```sql
+SELECT 
+    p.product_name, 
+    SUM(v.quantity) AS cantidad_total_vendida
+FROM fact_ventas v
+JOIN dim_producto p ON v.product_key = p.product_key
+GROUP BY p.product_name
+ORDER BY cantidad_total_vendida DESC;
+```
+![alt text](image-4.png)
+
+### 4. ¿Cuál fue la cantidad enviada por mes de envío?
+```sql
+SELECT 
+    EXTRACT(MONTH FROM f.full_date) AS mes_envio, 
+    SUM(v.quantity) AS cantidad_enviada
+FROM fact_ventas v
+JOIN dim_fecha f ON v.ship_date_key = f.date_key
+GROUP BY mes_envio
+ORDER BY mes_envio;
+```
+
+![alt text](image-5.png)
+
+### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
+```sql
+SELECT 
+    p.size, 
+    c.marital_status, 
+    SUM(v.sales_amount) AS total_vendido
+FROM fact_ventas v
+JOIN dim_producto p ON v.product_key = p.product_key
+JOIN dim_cliente c ON v.customer_key = c.customer_key
+GROUP BY p.size, c.marital_status;
+```
+
+![alt text](image-6.png)

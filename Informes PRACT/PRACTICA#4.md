@@ -67,11 +67,10 @@ GROUP BY p.category, mes
 ORDER BY mes;
 ```
 
-![Pregunta 1](image.png)
 
-![alt text](image-1.png)
+![alt text](preguntas/image-1.png)
 
-![alt text](image-2.png)
+![alt text](preguntas/image-2.png)
 
 ### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
 ```sql
@@ -85,7 +84,7 @@ GROUP BY c.customer_key, c.gender;
 ```
 
 
-![alt text](image-3.png)
+![alt text](preguntas/image-3.png)
 
 ### 3. ¿Cuál es la cantidad total vendida por producto?
 ```sql
@@ -97,7 +96,7 @@ JOIN dim_producto p ON v.product_key = p.product_key
 GROUP BY p.product_name
 ORDER BY cantidad_total_vendida DESC;
 ```
-![alt text](image-4.png)
+![alt text](preguntas/image-4.png)
 
 ### 4. ¿Cuál fue la cantidad enviada por mes de envío?
 ```sql
@@ -110,7 +109,7 @@ GROUP BY mes_envio
 ORDER BY mes_envio;
 ```
 
-![alt text](image-5.png)
+![alt text](preguntas/image-5.png)
 
 ### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
 ```sql
@@ -123,4 +122,5 @@ JOIN dim_producto p ON v.product_key = p.product_key
 JOIN dim_cliente c ON v.customer_key = c.customer_key
 GROUP BY p.size, c.marital_status;
 ```
+<img width="886" height="781" alt="image" src="https://github.com/user-attachments/assets/f5ef0c51-44af-4ece-866b-af007a36195d" />
 

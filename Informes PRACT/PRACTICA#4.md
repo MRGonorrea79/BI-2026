@@ -3,9 +3,8 @@
 # Ingeniería de Software
 # Business Intelligence
 
-## Laboratorio #2
-### Implementación del proceso ETL en Pentaho
-
+## Práctica #4
+### Modelo conceptual lógico físico estrella
 **Integrantes:**
 * Javier Angulo
 * Jotcelyn Godoy
@@ -20,7 +19,7 @@ SILVIA DIANA MARTINEZ MOSQUERA
 Business Intelligence / GR2SW
 
 **Fecha:**
-15 de Mayo de 2026
+5 de Mayo de 2026
 
 ---
 
@@ -28,7 +27,7 @@ Business Intelligence / GR2SW
 
 Al finalizar esta práctica, se espera que el estudiante sea capaz de:
 
-1. Normalizar datos en un esquema estrella
+1. Normalizar datos en un esquema estrella. 
 2. Realizar la implementación del modelo físico estrella PostgreSQL.
 
 ---
@@ -55,6 +54,7 @@ Normalización de los datos del archivo `Tabla_Desnormalizada_Ventas.csv` en un 
 A continuación, se presentan las consultas SQL solicitadas para el análisis de los datos:
 
 ### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
+
 ```sql
 SELECT 
     p.category, 
@@ -125,3 +125,33 @@ GROUP BY p.size, c.marital_status;
 ```
 
 ![alt text](image-6.png)
+=======
+
+```sql
+
+```
+
+### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
+
+```sql
+
+```
+
+### 3. ¿Cuál es la cantidad total vendida por producto?
+
+```sql
+
+```
+
+### 4. ¿Cuál fue la cantidad enviada por mes de envío?
+
+```sql
+
+```
+
+### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
+
+```sql
+
+```
+>>>>>>> 6fefdf5453df0fb4ef66d101627a60f38df6818d

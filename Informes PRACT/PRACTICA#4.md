@@ -68,7 +68,8 @@ ORDER BY mes;
 ```
 
 
-![alt text](preguntas/image-1.png)
+<img width="767" height="1130" alt="image" src="https://github.com/user-attachments/assets/4074645c-1d94-42f0-8a44-bd57a7f694bb" />
+
 
 ![alt text](preguntas/image-2.png)
 

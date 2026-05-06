@@ -48,8 +48,7 @@ Este diagrama representa la estructura de las tablas `fact_products`, `dim_categ
 ### 2.2. Modelo Estrella: Ventas (Tabla Desnormalizada)
 Normalización de los datos del archivo `Tabla_Desnormalizada_Ventas.csv` en un esquema estrella para facilitar el análisis transaccional.
 
-![Diagrama Ventas](nombre_de_tu_foto_2.png)
-
+![Diagrama Ventas](diagramas/Diagrama%20Modelo%20Estrella_Ventas.png)
 ---
 
 ## 3. Resolución de Preguntas SQL

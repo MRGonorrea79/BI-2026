@@ -55,3 +55,66 @@ Normalización de los datos del archivo `Tabla_Desnormalizada_Ventas.csv` en un 
 A continuación, se presentan las consultas SQL solicitadas para el análisis de los datos:
 
 ### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
+
+```sql
+SELECT 
+    p.category,
+    d.month,
+    COUNT(*) AS total_ventas
+FROM fact_sales f
+JOIN dim_product p ON f.product_id = p.product_id
+JOIN dim_date d ON f.date_id = d.date_id
+GROUP BY p.category, d.month
+ORDER BY p.category, d.month;
+```
+
+### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
+
+```sql
+SELECT 
+    c.customerkey,
+    c.gender,
+    SUM(f.salesamount) AS total_ingreso
+FROM fact_sales f
+JOIN dim_customer c ON f.customer_id = c.customer_id
+GROUP BY c.customerkey, c.gender
+ORDER BY total_ingreso DESC;
+```
+
+### 3. ¿Cuál es la cantidad total vendida por producto?
+
+```sql
+SELECT 
+    p.product_name,
+    SUM(f.quantity) AS total_vendido
+FROM fact_sales f
+JOIN dim_product p ON f.product_id = p.product_id
+GROUP BY p.product_name
+ORDER BY total_vendido DESC;
+```
+
+### 4. ¿Cuál fue la cantidad enviada por mes de envío?
+
+```sql
+SELECT 
+    sd.month,
+    SUM(f.quantity) AS total_enviado
+FROM fact_sales f
+JOIN dim_ship_date sd ON f.ship_date_id = sd.ship_date_id
+GROUP BY sd.month
+ORDER BY sd.month;
+```
+
+### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
+
+```sql
+SELECT 
+    p.size,
+    c.marital_status,
+    SUM(f.salesamount) AS total_vendido
+FROM fact_sales f
+JOIN dim_product p ON f.product_id = p.product_id
+JOIN dim_customer c ON f.customer_id = c.customer_id
+GROUP BY p.size, c.marital_status
+ORDER BY p.size, c.marital_status;
+```

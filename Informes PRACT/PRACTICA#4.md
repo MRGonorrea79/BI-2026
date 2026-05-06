@@ -3,8 +3,8 @@
 # Ingeniería de Software
 # Business Intelligence
 
-## Laboratorio #2
-### Implementación del proceso ETL en Pentaho
+## Laboratorio #4
+### Normalización y Análisis de Datos de Ventas en PostgreSQL
 
 **Integrantes:**
 * Javier Angulo
@@ -20,7 +20,7 @@ SILVIA DIANA MARTINEZ MOSQUERA
 Business Intelligence / GR2SW
 
 **Fecha:**
-15 de Mayo de 2026
+5 de Mayo de 2026
 
 ---
 
@@ -28,7 +28,7 @@ Business Intelligence / GR2SW
 
 Al finalizar esta práctica, se espera que el estudiante sea capaz de:
 
-1. Normalizar datos en un esquema estrella
+1. Normalizar datos en un esquema estrella. 
 2. Realizar la implementación del modelo físico estrella PostgreSQL.
 
 ---

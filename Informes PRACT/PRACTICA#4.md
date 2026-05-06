@@ -124,34 +124,3 @@ JOIN dim_cliente c ON v.customer_key = c.customer_key
 GROUP BY p.size, c.marital_status;
 ```
 
-![alt text](image-6.png)
-=======
-
-```sql
-
-```
-
-### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
-
-```sql
-
-```
-
-### 3. ¿Cuál es la cantidad total vendida por producto?
-
-```sql
-
-```
-
-### 4. ¿Cuál fue la cantidad enviada por mes de envío?
-
-```sql
-
-```
-
-### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
-
-```sql
-
-```
->>>>>>> 6fefdf5453df0fb4ef66d101627a60f38df6818d
